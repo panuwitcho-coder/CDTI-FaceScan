@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDTI Face Scan System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900">
+    <nav class="bg-[#003366] text-white p-4 shadow-md flex justify-between items-center">
+        <h1 class="text-xl font-bold">CDTI Attendance</h1>
+        <div id="user-info" class="text-sm">Login via @cdti.ac.th</div>
+    </nav>
+
+    <div class="container mx-auto p-4 md:p-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-500">
+                <p class="text-xs text-gray-500">มาเรียน</p>
+                <p id="stat-present" class="text-2xl font-bold">0</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-yellow-500">
+                <p class="text-xs text-gray-500">สาย</p>
+                <p id="stat-late" class="text-2xl font-bold">0</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-orange-500">
+                <p class="text-xs text-gray-500">ลา</p>
+                <p id="stat-leave" class="text-2xl font-bold">0</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-red-500">
+                <p class="text-xs text-gray-500">ขาด</p>
+                <p id="stat-absent" class="text-2xl font-bold">0</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm relative">
+                <h3 class="font-bold mb-4">📹 กล้องสแกนใบหน้า</h3>
+                <div class="relative rounded-lg overflow-hidden bg-black aspect-video flex items-center justify-center">
+                    <video id="video" autoplay muted class="absolute w-full h-full object-cover"></video>
+                    <canvas id="overlay" class="absolute pointer-events-none"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <h3 class="font-bold mb-4">⚙️ ตั้งค่าระบบ</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-xs font-semibold">เวลาเข้าสาย (Late Time)</label>
+                        <input type="time" id="set-late-time" class="w-full p-2 border rounded mt-1" value="08:00">
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm">แจ้งเตือนผู้ปกครอง</span>
+                        <input type="checkbox" id="set-notif" checked class="w-5 h-5">
+                    </div>
+                    <button id="save-settings" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition">บันทึกตั้งค่า</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
