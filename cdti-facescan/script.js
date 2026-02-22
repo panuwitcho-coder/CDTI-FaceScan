@@ -1,4 +1,4 @@
-const API_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL"; // นำ URL จาก Deployment มาใส่
+const API_URL = "https://script.google.com/macros/s/AKfycbzmVkLSNr_iQ3ePjJAx4bpvD-YWAW5MgAA8eu8hu4PYk3wVSBJkgUv83n2Ecxbpsfd6/exec"; // นำ URL จาก Deployment มาใส่
 const MODEL_URL = './models';
 
 // 1. โหลด AI Models
@@ -42,5 +42,6 @@ async function submitAttendance(studentId, name) {
         body: JSON.stringify(data)
     });
 }
+
 
 loadModels();
